@@ -6,15 +6,14 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./composer.json:/var/www/html/composer.json:delegated
-      - ./.env:/var/www/html/.env:delegated
+      - ./composer.json:/var/www/html/composer.json:cached
+      - ./.env:/var/www/html/.env:cached
+      - ./bin:/var/www/html/bin:cached
       - ./src:/var/www/html/src:cached
       - ./res:/var/www/html/res:cached
       - ./public:/var/www/html/public:cached
-      - ./local-packages:/var/www/html/local-packages:cached
       - ./keys:/var/www/html/keys:cached
       - ./conf:/var/www/html/conf:cached
-      - ./var/cache:/var/www/html/var/cache:delegated
     depends_on:
       - db
   db:

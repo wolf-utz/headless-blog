@@ -1,0 +1,25 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+(function () {
+    // TODO: create command for this.
+    define('APP_ROOT_PATH', dirname(__DIR__, 1) . '/');
+    require APP_ROOT_PATH . '/vendor/autoload.php';
+    (new \Symfony\Component\Dotenv\Dotenv())->loadEnv(APP_ROOT_PATH . '/.env');
+    try {
+        $kernel = new \OmegaCode\JwtSecuredApiCore\Core\Kernel\CliKernel();
+        $kernel->run();
+        $container = $kernel->getContainer();
+        /** @var \OmegaCode\JwtSecuredApiCore\Service\DatabaseService $databaseService */
+        $databaseService = $container->get(\OmegaCode\JwtSecuredApiCore\Service\DatabaseService::class);
+        $installSQL = file_get_contents(APP_ROOT_PATH . '/res/schema.sql');
+        $databaseService->getConnection()->exec($installSQL);
+        $databaseService->getConnection()->getSchemaManager();
+        echo "Successfully load database schema" . PHP_EOL;
+    } catch (Exception $e) {
+        echo "An error occurred while trying to load the database schema." . PHP_EOL;
+        echo "Error: ." . $e->getMessage() . PHP_EOL;
+    }
+})();

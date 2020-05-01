@@ -47,6 +47,9 @@
         ],
         "quality": [
             "./.ci/scripts/ciRunner.sh -s quality"
+        ],
+        "post-install-cmd": [
+            "./bin/install"
         ]
     },
     "extra": {
