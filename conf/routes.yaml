@@ -1,8 +1,0 @@
-routes:
-  -
-    name: home
-    route: /
-    methods: [get]
-    action: App\Action\Standard\WelcomeAction
-    middlewares:
-      - OmegaCode\JwtSecuredApiCore\Middleware\CacheableHTMLMiddleware

@@ -16,8 +16,9 @@ CREATE TABLE IF NOT EXISTS tag (
 CREATE TABLE IF NOT EXISTS category (
     id int(11) NOT NULL AUTO_INCREMENT,
     title varchar(255) DEFAULT '' NOT NULL,
-    parent int DEFAULT 0 NOT NULL,
-    PRIMARY KEY (id)
+    parent_id int DEFAULT 0 NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (parent_id) REFERENCES category (id)
 );
 CREATE TABLE IF NOT EXISTS post_tag (
     post_id int DEFAULT 0 NOT NULL,

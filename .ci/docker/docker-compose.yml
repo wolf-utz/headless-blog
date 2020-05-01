@@ -43,13 +43,26 @@ services:
         command: >
             /bin/sh -c "
                 echo \"Running phpcs...\";
-                bin/phpcs --error-severity=1 --warning-severity=8 --extensions=php src;
+                vendor/bin/phpcs --error-severity=1 --warning-severity=8 --extensions=php src;
                 echo \"Running php-cs-fixer...\";
-                bin/php-cs-fixer fix --dry-run --diff --allow-risky=yes
+                vendor/bin/php-cs-fixer fix --dry-run --diff --allow-risky=yes
                 echo \"Running phpmd...\";
-                bin/phpmd src text phpmd.xml;
+                vendor/bin/phpmd src text phpmd.xml;
                 echo \"Running phpstan...\";
-                bin/phpstan analyse -c phpstan.neon --autoload-file=vendor/autoload.php -l max src
+                vendor/bin/phpstan analyse -c phpstan.neon --autoload-file=vendor/autoload.php -l max src
+            "
+    #======================================================
+    # PHP fix
+    #======================================================
+    php-fix:
+        image: php:${PHP_VERSION}-alpine
+        volumes:
+            - ${ROOT_DIR}:${ROOT_DIR}
+        working_dir: ${ROOT_DIR}
+        command: >
+            /bin/sh -c "
+                echo \"Fix php-cs-fixer errors\";
+                vendor/bin/php-cs-fixer fix --allow-risky=yes
             "
     #======================================================
     # Unit tests
@@ -61,5 +74,5 @@ services:
         working_dir: ${ROOT_DIR}
         command: >
             /bin/sh -c "
-                php bin/phpunit -c phpunit.xml tests;
+                vendor/bin/phpunit -c phpunit.xml tests;
             "

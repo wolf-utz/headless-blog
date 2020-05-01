@@ -1,6 +1,5 @@
 .env
 vendor/
-composer.lock
 composer.phar
 keys/*
 !keys/.gitkeep

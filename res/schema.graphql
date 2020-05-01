@@ -2,9 +2,9 @@ schema {
     query: Query
 }
 type Query {
-    tags(page: Int! = 1, first: Int! = 10): [Tag]
-    posts(page: Int! = 1, first: Int! = 10): [Post]
-    categories(page: Int! = 1, first: Int! = 10): [Categeory]
+    tags(page: Int = 1, first: Int = 10): [Tag]
+    posts(page: Int = 1, first: Int = 10): [Post]
+    categories(page: Int = 1, first: Int = 10): [Categeory]
     tag(id: ID!): Tag
     post(id: ID!): Post
     category(id: ID!): Categeory

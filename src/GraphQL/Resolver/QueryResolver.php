@@ -4,31 +4,43 @@ declare(strict_types=1);
 
 namespace App\GraphQL\Resolver;
 
+use App\Repository\PostRepository;
+use App\Utility\ArrayUtility;
 use GraphQL\Type\Definition\ResolveInfo;
 use OmegaCode\JwtSecuredApiGraphQL\GraphQL\Context;
 use OmegaCode\JwtSecuredApiGraphQL\GraphQL\Resolver\ResolverInterface;
 
 class QueryResolver implements ResolverInterface
 {
-    public function __invoke($root, array $args, Context $context, ResolveInfo $info): ?string
+    protected PostRepository $postRepository;
+
+    public function __construct(PostRepository $postRepository)
     {
-        if ($info->fieldName === 'greet') {
-            $name = strip_tags($args['name']);
+        $this->postRepository = $postRepository;
+    }
 
-            return "Hello $name";
+    public function __invoke($root, array $args, Context $context, ResolveInfo $info)
+    {
+        switch ($info->fieldName) {
+            case 'posts':
+                return $this->resolvePosts($root, $args, $context, $info);
+            default:
+                return null;
         }
-        if ($info->fieldName === 'multiply') {
-            $a = (int) $args['a'];
-            $b = (int) $args['b'];
-
-            return (string) ($a * $b);
-        }
-
-        return null;
     }
 
     public function getType(): string
     {
         return 'Query';
+    }
+
+    protected function resolvePosts($root, array $args, Context $context, ResolveInfo $info)
+    {
+        $data = $this->postRepository->findPaginated((int) $args['page'], (int) $args['first']);
+        foreach ($data as &$row) {
+            $row = ArrayUtility::snakeCaseKeysToCamelCaseKeys($row);
+        }
+
+        return $data;
     }
 }

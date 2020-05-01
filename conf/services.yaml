@@ -5,9 +5,7 @@ services:
     public: true
   App\:
     resource: '../src/*'
-    exclude: '../src/{GraphQL/Resolver,Kernel.php}'
-
-  # Remove the following if you dont want to use GraphQL
+    exclude: '../src/{Kernel.php}'
 
   App\GraphQL\Provider\SchemaProvider:
     decorates: OmegaCode\JwtSecuredApiGraphQL\GraphQL\Provider\SchemaProvider
