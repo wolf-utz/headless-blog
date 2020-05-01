@@ -1,0 +1,8 @@
+schema {
+    query: Query
+}
+
+type Query {
+    greet(name: String!): String
+    multiply(a: Int!, b:Int!): Int
+}

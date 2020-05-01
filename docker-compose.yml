@@ -1,0 +1,39 @@
+version: '2.3'
+services:
+  app:
+    container_name: app
+    build: ./.docker
+    ports:
+      - 80:80
+    volumes:
+      - ./composer.json:/var/www/html/composer.json:delegated
+      - ./.env:/var/www/html/.env:delegated
+      - ./src:/var/www/html/src:cached
+      - ./res:/var/www/html/res:cached
+      - ./public:/var/www/html/public:cached
+      - ./local-packages:/var/www/html/local-packages:cached
+      - ./keys:/var/www/html/keys:cached
+      - ./conf:/var/www/html/conf:cached
+      - ./var/cache:/var/www/html/var/cache:delegated
+    depends_on:
+      - db
+  db:
+    image: mariadb:10.1
+    command: mysqld --character-set-server=utf8
+    ports:
+      - 3306:3306
+    volumes:
+      - .database:/var/lib/mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=1234
+      - MYSQL_DATABASE=application
+  adminer:
+    image: adminer:latest
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - 8080:8080

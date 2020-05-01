@@ -1,0 +1,17 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: true
+  App\:
+    resource: '../src/*'
+    exclude: '../src/{GraphQL/Resolver,Kernel.php}'
+
+  # Remove the following if you dont want to use GraphQL
+
+  App\GraphQL\Provider\SchemaProvider:
+    decorates: OmegaCode\JwtSecuredApiGraphQL\GraphQL\Provider\SchemaProvider
+
+  App\Subscriber\GraphQLResolverSubscriber:
+    tags:
+      - 'kernel.event_subscriber'
