@@ -1,5 +1,6 @@
 schema {
     query: Query
+    mutation: Mutation
 }
 type Query {
     tags(page: Int = 1, first: Int = 10): [Tag]
@@ -9,7 +10,13 @@ type Query {
     post(id: ID!): Post
     category(id: ID!): Categeory
 }
+type Mutation {
+    createPost(postInput: PostInput!): Post
+    createCategory(categoryInput: CategeoryInput!): Categeory
+    tagPost(tagInput: TagInput!): Tag
+}
 type Post {
+    # blabla
     id: ID
     title: String
     active: Boolean
@@ -28,4 +35,18 @@ type Categeory {
 type Tag {
     id: ID
     title: String
+}
+input PostInput {
+    title: String!
+    active: Boolean
+    teaser: String
+    body: String
+    categories: [String]
+    tags: [String]
+}
+input CategeoryInput {
+    title: String!
+}
+input TagInput {
+    title: String!
 }
