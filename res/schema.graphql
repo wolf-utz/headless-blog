@@ -1,8 +1,31 @@
 schema {
     query: Query
 }
-
 type Query {
-    greet(name: String!): String
-    multiply(a: Int!, b:Int!): Int
+    tags(page: Int! = 1, first: Int! = 10): [Tag]
+    posts(page: Int! = 1, first: Int! = 10): [Post]
+    categories(page: Int! = 1, first: Int! = 10): [Categeory]
+    tag(id: ID!): Tag
+    post(id: ID!): Post
+    category(id: ID!): Categeory
+}
+type Post {
+    id: ID
+    title: String
+    active: Boolean
+    teaser: String
+    body: String
+    createdAt: Int
+    updatedAt: Int
+    categories: [Categeory]
+    tags: [Tag]
+}
+type Categeory {
+    id: ID
+    title: String
+    parent: Categeory
+}
+type Tag {
+    id: ID
+    title: String
 }
