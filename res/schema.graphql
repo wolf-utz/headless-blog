@@ -5,18 +5,23 @@ schema {
 type Query {
     tags(page: Int = 1, first: Int = 10): [Tag]
     posts(page: Int = 1, first: Int = 10): [Post]
-    categories(page: Int = 1, first: Int = 10): [Categeory]
+    categories(page: Int = 1, first: Int = 10): [Category]
     tag(id: ID!): Tag
     post(id: ID!): Post
-    category(id: ID!): Categeory
+    category(id: ID!): Category
 }
 type Mutation {
     createPost(postInput: PostInput!): Post
-    createCategory(categoryInput: CategeoryInput!): Categeory
-    tagPost(tagInput: TagInput!): Tag
+    createCategory(categoryInput: CategoryInput!): Category
+    createTag(tagInput: TagInput!): Tag
+    deletePost(id: ID!): Boolean
+    deleteCategory(id: ID!): Boolean
+    deleteTag(id: ID!): Boolean
+    updatePost(id: ID!, postInput: PostInput!): Post
+    updateCategory(id: ID!, categoryInput: CategoryInput!): Category
+    updateTag(id: ID!, tagInput: TagInput!): Tag
 }
 type Post {
-    # blabla
     id: ID
     title: String
     active: Boolean
@@ -24,13 +29,13 @@ type Post {
     body: String
     createdAt: Int
     updatedAt: Int
-    categories: [Categeory]
+    categories: [Category]
     tags: [Tag]
 }
-type Categeory {
+type Category {
     id: ID
     title: String
-    parent: Categeory
+    parent: Category
 }
 type Tag {
     id: ID
@@ -38,14 +43,16 @@ type Tag {
 }
 input PostInput {
     title: String!
+    slug: String!
     active: Boolean
     teaser: String
     body: String
-    categories: [String]
-    tags: [String]
+    categories: [ID]
+    tags: [ID]
 }
-input CategeoryInput {
+input CategoryInput {
     title: String!
+    parentId: ID
 }
 input TagInput {
     title: String!

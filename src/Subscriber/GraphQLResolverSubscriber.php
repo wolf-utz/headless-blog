@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Subscriber;
 
 use App\GraphQL\Resolver\CategoryResolver;
+use App\GraphQL\Resolver\MutationResolver;
 use App\GraphQL\Resolver\PostResolver;
 use App\GraphQL\Resolver\QueryResolver;
 use App\GraphQL\Resolver\TagResolver;
@@ -48,6 +49,7 @@ class GraphQLResolverSubscriber implements EventSubscriberInterface
             PostResolver::class,
             TagResolver::class,
             CategoryResolver::class,
+            MutationResolver::class,
         ];
     }
 }

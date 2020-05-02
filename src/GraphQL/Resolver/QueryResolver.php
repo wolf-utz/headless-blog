@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\GraphQL\Resolver;
 
 use App\Repository\PostRepository;
-use App\Utility\ArrayUtility;
 use GraphQL\Type\Definition\ResolveInfo;
+use OmegaCode\JwtSecuredApiCore\Utility\ArrayUtility;
 use OmegaCode\JwtSecuredApiGraphQL\GraphQL\Context;
 use OmegaCode\JwtSecuredApiGraphQL\GraphQL\Resolver\ResolverInterface;
 
