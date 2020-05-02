@@ -16,7 +16,6 @@ declare(strict_types=1);
         $databaseService = $container->get(\OmegaCode\JwtSecuredApiCore\Service\DatabaseService::class);
         $installSQL = file_get_contents(APP_ROOT_PATH . '/res/schema.sql');
         $databaseService->getConnection()->exec($installSQL);
-        $databaseService->getConnection()->getSchemaManager();
         echo "Successfully load database schema" . PHP_EOL;
     } catch (Exception $e) {
         echo "An error occurred while trying to load the database schema." . PHP_EOL;
