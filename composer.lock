@@ -670,16 +670,16 @@
         },
         {
             "name": "omegacode/jwt-secured-api-core",
-            "version": "0.7.0",
+            "version": "0.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/0m3gaC0d3/jwt-secured-api-core.git",
-                "reference": "5b25a8e7eb7b6e97209a139121e324a1243e4834"
+                "reference": "e76aec65afd1df3a10785cb7dbf495256fedb6c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/0m3gaC0d3/jwt-secured-api-core/zipball/5b25a8e7eb7b6e97209a139121e324a1243e4834",
-                "reference": "5b25a8e7eb7b6e97209a139121e324a1243e4834",
+                "url": "https://api.github.com/repos/0m3gaC0d3/jwt-secured-api-core/zipball/e76aec65afd1df3a10785cb7dbf495256fedb6c2",
+                "reference": "e76aec65afd1df3a10785cb7dbf495256fedb6c2",
                 "shasum": ""
             },
             "require": {
@@ -730,7 +730,7 @@
             ],
             "description": "This is a the simple JWT based API core package.",
             "homepage": "https://github.com/0m3gaC0d3/jwt-secured-api-core",
-            "time": "2020-05-02T11:35:51+00:00"
+            "time": "2020-05-02T22:20:06+00:00"
         },
         {
             "name": "omegacode/jwt-secured-api-graphql",

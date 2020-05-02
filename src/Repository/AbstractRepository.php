@@ -1,9 +1,36 @@
-<?php declare(strict_types=1);
+<?php
+
+/**
+ * MIT License
+ *
+ * Copyright (c) 2020 Wolf Utz<wpu@hotmail.de>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+declare(strict_types=1);
 
 namespace App\Repository;
 
-use App\Utility\StringUtility;
+use Doctrine\DBAL\Query\QueryBuilder;
 use OmegaCode\JwtSecuredApiCore\Service\DatabaseService;
+use OmegaCode\JwtSecuredApiCore\Utility\StringUtility;
 
 abstract class AbstractRepository
 {
@@ -17,13 +44,13 @@ abstract class AbstractRepository
     public function exists(int $id): bool
     {
         $queryBuilder = $this->createQueryBuilder();
-        $result = $queryBuilder
+        $statement = $result = $queryBuilder
             ->select('COUNT(id) as count')
             ->from($this->getTable())
             ->where($queryBuilder->expr()->eq('id', ':id'))
             ->setParameter('id', $id)
-            ->execute()
-            ->fetch();
+            ->execute();
+        $result = $statement instanceof \PDOStatement ? $statement->fetchAll() : [];
 
         return (int) ($result['count'] ?? 0) > 0;
     }
@@ -40,7 +67,6 @@ abstract class AbstractRepository
             ->setParameter('id', $id)
             ->setMaxResults(1)
             ->execute();
-
         $result = $statement instanceof \PDOStatement ? $statement->fetchAll() : [];
 
         return $result[0] ?? null;
@@ -60,19 +86,20 @@ abstract class AbstractRepository
     public function delete(int $id): int
     {
         $queryBuilder = $this->createQueryBuilder();
-
-        return $queryBuilder
+        $statement = $queryBuilder
             ->delete($this->getTable())
             ->where(
                 $queryBuilder->expr()->eq('id', ':id')
             )
             ->setParameter('id', $id)
             ->execute();
+
+        return is_int($statement) ? $statement : 0;
     }
 
     abstract public function getTable(): string;
 
-    protected function createQueryBuilder()
+    protected function createQueryBuilder(): QueryBuilder
     {
         return $this->databaseService->getConnection()->createQueryBuilder();
     }
