@@ -9,6 +9,7 @@ use App\GraphQL\Resolver\PostResolver;
 use App\GraphQL\Resolver\QueryResolver;
 use App\GraphQL\Resolver\TagResolver;
 use OmegaCode\JwtSecuredApiGraphQL\Event\ResolverCollectedEvent;
+use OmegaCode\JwtSecuredApiGraphQL\GraphQL\Resolver\ResolverInterface;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -34,7 +35,9 @@ class GraphQLResolverSubscriber implements EventSubscriberInterface
         $registry->clear();
         /** @var string $class */
         foreach ($this->getResolverClasses() as $class) {
-            $registry->addResolver($this->container->get($class));
+            /** @var ResolverInterface $resolver */
+            $resolver = $this->container->get($class);
+            $registry->add($resolver, $resolver->getType());
         }
     }
 

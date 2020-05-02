@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "37ec2ed1b0981ff89a0ddeb6a5862823",
+    "content-hash": "eddf512f6587cf39ceb411d4ace0967b",
     "packages": [
         {
             "name": "cakephp/chronos",
@@ -670,16 +670,16 @@
         },
         {
             "name": "omegacode/jwt-secured-api-core",
-            "version": "0.6.1",
+            "version": "0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/0m3gaC0d3/jwt-secured-api-core.git",
-                "reference": "18828c3459bbdacdf2797ba8605fe662a09c178a"
+                "reference": "5b25a8e7eb7b6e97209a139121e324a1243e4834"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/0m3gaC0d3/jwt-secured-api-core/zipball/18828c3459bbdacdf2797ba8605fe662a09c178a",
-                "reference": "18828c3459bbdacdf2797ba8605fe662a09c178a",
+                "url": "https://api.github.com/repos/0m3gaC0d3/jwt-secured-api-core/zipball/5b25a8e7eb7b6e97209a139121e324a1243e4834",
+                "reference": "5b25a8e7eb7b6e97209a139121e324a1243e4834",
                 "shasum": ""
             },
             "require": {
@@ -730,20 +730,20 @@
             ],
             "description": "This is a the simple JWT based API core package.",
             "homepage": "https://github.com/0m3gaC0d3/jwt-secured-api-core",
-            "time": "2020-05-01T20:19:27+00:00"
+            "time": "2020-05-02T11:35:51+00:00"
         },
         {
             "name": "omegacode/jwt-secured-api-graphql",
-            "version": "0.2.0",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/0m3gaC0d3/jwt-secured-api-graphql.git",
-                "reference": "6eb89efa9d8f75ee39a88fb03c82d5748fe0ed80"
+                "reference": "e358db46dcde1132dbb91f58394d6af6b140fc40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/0m3gaC0d3/jwt-secured-api-graphql/zipball/6eb89efa9d8f75ee39a88fb03c82d5748fe0ed80",
-                "reference": "6eb89efa9d8f75ee39a88fb03c82d5748fe0ed80",
+                "url": "https://api.github.com/repos/0m3gaC0d3/jwt-secured-api-graphql/zipball/e358db46dcde1132dbb91f58394d6af6b140fc40",
+                "reference": "e358db46dcde1132dbb91f58394d6af6b140fc40",
                 "shasum": ""
             },
             "require": {
@@ -785,7 +785,7 @@
             ],
             "description": "This package extends jwt-secured-api by a graphql implementation.",
             "homepage": "https://github.com/0m3gaC0d3/jwt-secured-api-graphql",
-            "time": "2020-05-01T17:50:52+00:00"
+            "time": "2020-05-02T18:47:53+00:00"
         },
         {
             "name": "overblog/dataloader-php",
