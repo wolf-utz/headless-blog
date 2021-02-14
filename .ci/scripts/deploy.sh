@@ -9,4 +9,4 @@ echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
 #chmod 644 ~/.ssh/known_hosts
 curl -sS https:/getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
 composer global require -q --dev deployer/deployer:~6.4 deployphp/recipes:~6.2
-/home/php/.composer/vendor/bin/dep deploy production
+/home/php/.composer/vendor/bin/dep -f./.ci/deploy.php deploy production
