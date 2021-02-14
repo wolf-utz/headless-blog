@@ -27,3 +27,9 @@ script:
   - >
     echo "Running unit tests";
     .ci/scripts/ciRunner.sh -s unit -p $TRAVIS_PHP_VERSION
+
+deploy:
+  - provider: script
+    script: bash .ci/deploy.sh
+    on:
+      branch: master
