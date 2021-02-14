@@ -31,6 +31,6 @@ script:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: bash .ci/deploy.sh
+    script: bash .ci/scripts/deploy.sh
     on:
       branch: feature/add-deployment
