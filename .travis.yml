@@ -26,6 +26,9 @@ script:
     echo "Running unit tests";
     .ci/scripts/ciRunner.sh -s unit -p $TRAVIS_PHP_VERSION
 
+addons:
+  ssh_known_hosts: 'lupus-code.it'
+
 deploy:
   - provider: script
     cleanup: true
