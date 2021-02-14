@@ -6,13 +6,13 @@ require 'recipe/common.php';
 require 'recipe/rsync.php';
 
 host('production')
-    ->hostname('vps-zap325947-1.zap-srv.com')
+    ->hostname('lupus-code.it')
     ->user('root')
     ->set('deploy_path', '/var/www/html/api.lupus-code.it');
 
 // Config
 set('php_path', '/usr/bin/php');
-set('bin_folder', './vendor/bin/');
+set('bin_folder', './vendor/bin');
 add('shared_files', [
     '.env'
 ]);
@@ -65,8 +65,8 @@ task('deploy', [
     'rsync',
     'deploy:shared',
     'deploy:symlink',
-    'opcache',
-    'clear-cache',
+//    'opcache',
+//    'clear-cache',
     'deploy:unlock',
     'cleanup',
     'success'
