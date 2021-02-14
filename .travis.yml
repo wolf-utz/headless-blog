@@ -32,4 +32,4 @@ deploy:
   - provider: script
     script: bash .ci/deploy.sh
     on:
-      branch: master
+      branch: feature/add-deployment
