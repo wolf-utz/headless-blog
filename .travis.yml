@@ -3,8 +3,6 @@ language: php
 php:
   - 7.4
 
-sudo: true
-
 cache:
   directories:
     - $HOME/.composer/cache
@@ -30,7 +28,7 @@ script:
 
 deploy:
   - provider: script
-    skip_cleanup: true
+    cleanup: true
     script: bash .ci/scripts/deploy.sh
     on:
       branch: feature/add-deployment
