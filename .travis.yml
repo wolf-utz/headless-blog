@@ -35,6 +35,7 @@ before_deploy:
   - eval "$(ssh-agent -s)"
   - echo "$SSH_PRIVATE_KEY" | base64 -d | tr -d '\r' >> /tmp/deploy_rsa
   - chmod 600 /tmp/deploy_rsa
+  - echo /tmp/deploy_rsa
   - ssh-add /tmp/deploy_rsa
 
 deploy:
