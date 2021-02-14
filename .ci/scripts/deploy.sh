@@ -3,6 +3,8 @@
 # Login to server via ssh.
 which ssh-agent || ( apk --no-cache add openssh-client )
 eval "$(ssh-agent -s)"
+
+SSH_PRIVATE_KEY=$(echo "$SSH_PRIVATE_KEY" | base64 -d)
 echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
 
 # Add known_hosts.
