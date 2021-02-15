@@ -18,7 +18,8 @@
         "phpstan/phpstan": "0.12.*",
         "phpmd/phpmd": "^2.8",
         "kint-php/kint": "^3.3",
-        "deployer/deployer": "^6.8"
+        "deployer/deployer": "^6.8",
+        "deployphp/recipes": "^6.2"
     },
     "autoload": {
         "psr-4": {
