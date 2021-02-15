@@ -2,4 +2,4 @@
 
 echo "Install deployer and deploy to destination:"
 composer global require -q --dev deployer/deployer:~6.4 deployphp/recipes:~6.2
-"$HOME"/.composer/vendor/bin/dep -f./.ci/deploy.php deploy production
+~/.composer/vendor/bin/dep -f./.ci/deploy.php deploy production
