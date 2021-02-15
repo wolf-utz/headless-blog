@@ -24,10 +24,8 @@ before_deploy:
   - echo "Login to server:"
   - which ssh-agent || ( apk --no-cache add openssh-client )
   - eval "$(ssh-agent -s)"
-  - echo "$SSH_PRIVATE_KEY"
-  - echo "$SSH_PRIVATE_KEY" | base64 -d >> /tmp/deploy_rsa
+  - echo "$SSH_PRIVATE_KEY" >> /tmp/deploy_rsa
   - chmod 600 /tmp/deploy_rsa
-  - cat /tmp/deploy_rsa
   - ssh-add /tmp/deploy_rsa
 
 deploy:
