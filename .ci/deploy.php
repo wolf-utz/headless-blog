@@ -25,12 +25,17 @@ add('writable_dirs', [
 set('rsync_src', './');
 set('rsync', [
     'exclude' => [
-        'deploy.php',
-        '.env',
+        '.env*',
         '.git*',
         'docker-compose.yml',
         '.ci',
         '.idea',
+        '.php_cs',
+        '.travis.yml',
+        'phpcs.xml',
+        'phpmd.xml',
+        'phpstan.neon',
+        'phpunit.xml',
     ],
     'exclude-file' => false,
     'include' => [],
