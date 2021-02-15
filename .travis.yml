@@ -21,7 +21,7 @@ before_deploy:
 - ssh-add /tmp/deploy_rsa
 deploy:
 - provider: script
-  cleanup: true
-  script: bash .ci/scripts/deploy.sh
+  skip_cleanup: true
+  script: vendor/bin/dep -f./.ci/deploy.php deploy production
   on:
     branch: feature/add-deployment
