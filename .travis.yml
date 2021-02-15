@@ -16,6 +16,7 @@ addons:
   ssh_known_hosts: lupus-code.it
 before_deploy:
   - composer global require -q --dev deployer/deployer:~6.4 deployphp/recipes:~6.2
+  - ls -la "$HOME"/.config/composer/vendor/bin
   - openssl aes-256-cbc -K $encrypted_db2095f63ba3_key -iv $encrypted_db2095f63ba3_iv -in .ci/travis/deploy_rsa.enc -out /tmp/deploy_rsa -d
   - eval "$(ssh-agent -s)"
   - chmod 600 /tmp/deploy_rsa
@@ -24,6 +25,6 @@ deploy:
   -
     provider: script
     skip_cleanup: true
-    script: $HOME/.config/composer/vendor/bin -f./.ci/deploy.php deploy production
+    script: .ci/scripts/deploy.sh
     on:
       branch: feature/add-deployment
