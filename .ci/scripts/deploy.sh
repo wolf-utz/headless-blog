@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-echo "Install deployer and deploy to destination:"
-composer global require -q --dev deployer/deployer:~6.4 deployphp/recipes:~6.2
-vendor/bin/dep -f./.ci/deploy.php deploy production

@@ -45,7 +45,8 @@ set('rsync', [
 
 // Tasks
 task('build', function () {
-    run('composer -q install --no-dev');
+    run('rm -rf vendor');
+    run('composer install --no-dev');
 })->local();
 
 task('opcache', function () {

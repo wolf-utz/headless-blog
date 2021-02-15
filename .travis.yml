@@ -11,7 +11,7 @@ notifications:
     on_success: change
     on_failure: change
 before_script:
-- ".ci/scripts/ciRunner.sh -s build -p $TRAVIS_PHP_VERSION"
+- composer install
 addons:
   ssh_known_hosts: lupus-code.it
 before_deploy:
