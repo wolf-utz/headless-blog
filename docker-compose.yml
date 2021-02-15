@@ -1,8 +1,11 @@
 version: '2.3'
 services:
+  #======================================================
+  # Application
+  #======================================================
   app:
-    container_name: app
-    build: ./.docker
+    container_name: headless-blog-app
+    image: omegacode/jwt-secured-api-web-server:1.2
     ports:
       - 80:80
     volumes:
@@ -16,7 +19,11 @@ services:
       - ./conf:/var/www/html/conf:cached
     depends_on:
       - db
+  #======================================================
+  # Database
+  #======================================================
   db:
+    container_name: headless-blog-db
     image: mariadb:10.1
     command: mysqld --character-set-server=utf8
     ports:
@@ -29,6 +36,9 @@ services:
       - MYSQL_USER=user
       - MYSQL_PASSWORD=1234
       - MYSQL_DATABASE=application
+  #======================================================
+  # Adminer
+  #======================================================
   adminer:
     image: adminer:latest
     depends_on:
