@@ -45,7 +45,7 @@ set('rsync', [
 
 // Tasks
 task('build', function () {
-    run('rm -rf vendor');
+    run('rm -rf vendor'); // Remove old vendor data.
     run('composer install --no-dev');
 })->local();
 

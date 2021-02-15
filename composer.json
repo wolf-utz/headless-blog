@@ -17,9 +17,7 @@
         "friendsofphp/php-cs-fixer": "^2.16",
         "phpstan/phpstan": "0.12.*",
         "phpmd/phpmd": "^2.8",
-        "kint-php/kint": "^3.3",
-        "deployer/deployer": "^6.8",
-        "deployphp/recipes": "^6.2"
+        "kint-php/kint": "^3.3"
     },
     "autoload": {
         "psr-4": {
